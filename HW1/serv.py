@@ -1,6 +1,5 @@
 import json
 from typing import Any, Callable, Dict
-from urllib.parse import parse_qs
 
 from .math import factorial, fibonacci, mean
 from .error import send_error
