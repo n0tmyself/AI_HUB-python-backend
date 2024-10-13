@@ -24,9 +24,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       
-      # Установка зависимостей проекта, если они указаны в pyproject.toml
-      - name: Install dependencies
-        run: pip install --upgrade pip && pip install -e .
+      # # Установка зависимостей проекта, если они указаны в pyproject.toml
+      # - name: Install dependencies
+      #   run: pip install --upgrade pip && pip install -e .
       
       # Установка tox для управления тестами
       - name: Install tox
