@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "hw2"
+name = "hw_2"
 version = "0.1.0"
 description = ""
 authors = ["Ilya Katun <katun.ilya@gmail.com>"]
