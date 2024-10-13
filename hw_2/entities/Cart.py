@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from HW2.entities.Item_cart import ItemCart
+from hw_2.entities.Item_cart import ItemCart
 
 class Cart(BaseModel):
     id: int
