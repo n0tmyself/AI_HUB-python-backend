@@ -15,12 +15,23 @@ jobs:
         python-version: ["3.12"]
 
     steps:
+      # Шаг для клонирования репозитория
       - uses: actions/checkout@v4
+      
+      # Установка нужной версии Python
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      
+      # Установка зависимостей проекта, если они указаны в pyproject.toml
+      - name: Install dependencies
+        run: pip install --upgrade pip && pip install -e .
+      
+      # Установка tox для управления тестами
       - name: Install tox
         run: pip install tox tox-gh-actions
+      
+      # Запуск тестов через tox
       - name: Run tox
         run: tox
