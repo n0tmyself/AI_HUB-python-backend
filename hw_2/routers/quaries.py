@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Response
 from http import HTTPStatus
 from pydantic import NonNegativeFloat, NonNegativeInt, PositiveInt
-from HW2.entities.Cart import Cart
-from HW2.entities.Item_cart import ItemCart
-from HW2.entities.Item import Item 
+from hw_2.entities.Cart import Cart
+from hw_2.entities.Item_cart import ItemCart
+from hw_2.entities.Item import Item 
 
 router_cart = APIRouter(prefix="/cart")
 router_item = APIRouter(prefix="/item")

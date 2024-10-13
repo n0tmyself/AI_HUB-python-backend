@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from HW2.routers.quaries import router_cart, router_item
+from hw_2.routers.quaries import router_cart, router_item
 
 app = FastAPI(title="Shop API")
 
