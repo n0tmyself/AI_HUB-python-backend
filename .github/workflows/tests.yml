@@ -2,9 +2,9 @@ name: Run tests
 
 on:
   push:
-    branches: ["HW2"]
+    branches: ["main"]
   pull_request:
-    branches: ["HW2"]
+    branches: ["main"]
 
 jobs:
   build:
