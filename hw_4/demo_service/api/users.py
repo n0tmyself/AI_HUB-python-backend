@@ -4,16 +4,16 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import PlainTextResponse
 
-from lecture_4.demo_service.api.contracts import (
+from hw_4.demo_service.api.contracts import (
     RegisterUserRequest,
     UserResponse,
 )
-from lecture_4.demo_service.api.utils import (
+from hw_4.demo_service.api.utils import (
     AdminDep,
     AuthorDep,
     UserServiceDep,
 )
-from lecture_4.demo_service.core.users import UserInfo, UserRole
+from hw_4.demo_service.core.users import UserInfo, UserRole
 
 router = APIRouter()
 
@@ -25,6 +25,7 @@ async def register_user(
 ) -> UserResponse:
     entity = user_service.register(UserInfo(**body.model_dump()))
     return UserResponse.from_user_entity(entity)
+
 
 @router.post("/user-get")
 async def get_user(

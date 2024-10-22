@@ -1,14 +1,16 @@
-import pytest
-from fastapi.testclient import TestClient
 from datetime import datetime
 from http import HTTPStatus
-from pydantic import SecretStr
 
-from hw_4.demo_service.core.users import UserInfo, UserRole, UserService, password_is_longer_than_8
+from pydantic import SecretStr
+import pytest
+from fastapi.testclient import TestClient
+
 from hw_4.demo_service.api.main import create_app
 from hw_4.demo_service.api.utils import initialize
+from hw_4.demo_service.core.users import UserInfo, UserRole, UserService, password_is_longer_than_8
 
-@pytest.fixture
+
+@pytest.fixture()
 def test_client():
     app = create_app()
     user_service = UserService(password_validators=[password_is_longer_than_8])
@@ -16,29 +18,29 @@ def test_client():
         UserInfo(
             username="admin",
             name="admin",
-            birthdate=datetime(2000, 1, 1),
+            birthdate=datetime(2001, 12, 10),
             role=UserRole.ADMIN,
-            password=SecretStr("123456789")
+            password=SecretStr("123456789"),
         )
     )
     app.state.user_service = user_service
-
     return TestClient(app)
 
-    
-def test_correct_register_user(test_client):
 
+def test_correct_register_user(test_client):
     response = test_client.post(
         "/user-register",
         json={
-            "username": "test_user",
-            "name": "Joe",
-            "birthdate": "2000-05-20",
+            "username": "Vadik",
+            "name": "Vadim",
+            "birthdate": "2000-10-10",
             "password": "123456789",
         },
     )
     print(response.json())
     assert response.status_code == HTTPStatus.OK
+
+    response_data = response.json()
 
     
 
@@ -94,7 +96,7 @@ def test_user_get_by_id_admin(test_client):
     assert data["uid"] == 1
     assert data['username'] == "admin"
     assert data['name'] == "admin"
-    assert data['birthdate'] == "2000-01-01T00:00:00"
+    assert data['birthdate'] == "2001-12-10T00:00:00"
     assert data['role'] == "admin"
 
 def test_error_params_user_get(test_client):
@@ -136,7 +138,7 @@ def test_user_get_by_username_admin(test_client):
     assert data['uid'] == 1
     assert data['username'] == "admin"
     assert data['name'] == "admin"
-    assert data['birthdate'] == "2000-01-01T00:00:00"
+    assert data['birthdate'] == "2001-12-10T00:00:00"
     assert data['role'] == "admin"
 
 def test_error_get_by_username(test_client):
